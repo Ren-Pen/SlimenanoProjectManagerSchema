@@ -1,0 +1,71 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://sopm.slimenano.com/plugins/slimenano-plugins.schema.json",
+    "title": "Slimenano Plugins Configuration Compact",
+    "description": "Slimenano Plugins Configuration Compact",
+    "type": "object",
+    "anyOf": [
+        {
+            "if": {
+                "properties": {
+                    "group": {
+                        "const": "com.slimenano"
+                    },
+                    "artifact": {
+                        "const": "slimenano-install-plugin"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "configuration": {
+                        "$ref": "slimenano-install-plugin.schema.json#"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "group": {
+                        "const": "com.slimenano"
+                    },
+                    "artifact": {
+                        "const": "slimenano-compiler-plugin"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "configuration": {
+                        "$ref": "slimenano-compiler-plugin.schema.json#"
+                    }
+                }
+            }
+        },
+        {
+            "if": {
+                "properties": {
+                    "group": {
+                        "const": "com.slimenano"
+                    },
+                    "artifact": {
+                        "const": "slimenano-cmake-plugin"
+                    }
+                }
+            },
+            "then": {
+                "properties": {
+                    "configuration": {
+                        "$ref": "slimenano-cmake-plugin.schema.json#"
+                    }
+                }
+            }
+        }
+    ],
+    "properties": {
+        "configuration": {
+            "type": "object"
+        }
+    }
+}

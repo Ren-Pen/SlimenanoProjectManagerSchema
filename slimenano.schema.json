@@ -70,6 +70,9 @@
             "anyOf": [
                 {
                     "$ref": "#/definitions/artifactMeta"
+                },
+                {
+                    "$ref": "plugins/slimenano-plugins.schema.json#"
                 }
             ],
             "properties": {
@@ -77,8 +80,7 @@
                 "artifact": true,
                 "version": true,
                 "configuration": {
-                    "type": "object",
-                    "description": "Plugin configuration"
+                    "type": "object"
                 }
             }
         }
