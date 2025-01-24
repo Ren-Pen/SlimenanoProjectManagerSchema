@@ -1,0 +1,68 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "https://sopm.slimenano.com/plugins/slimenano-cmake-plugin.schema.json",
+    "title": "SlimeNano CMake Plugin configuration",
+    "description": "SlimeNano CMake Plugin configuration",
+    "type": "object",
+    "definitions": {
+        
+    },
+    "properties": {
+        "minimumRequired": {
+            "type": "string",
+            "description": "Minimum required CMake version"
+        },
+        "cache": {
+            "type": "object",
+            "description": "CMake cache",
+            "additionalProperties": {
+                "type": ["string", "object"],
+                "required": ["value"],
+                "properties": {
+                    "value": {
+                        "type": "string",
+                        "description": "CMake cache value"
+                    },
+                    "force": {
+                        "type": "boolean",
+                        "description": "Force CMake cache value"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "CMake cache description"
+                    }
+                }
+            }
+        },
+        "variable": {
+            "type": "object",
+            "description": "CMake variable",
+            "additionalProperties": {
+                "type": "string",
+                "description": "CMake variable value"
+            }
+        },
+        "options": {
+            "type": "array",
+            "description": "CMake options",
+            "items": {
+                "type": "object",
+                "required": ["name"],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "CMake option name"
+                    },
+                    "default": {
+                        "type": "boolean",
+                        "description": "CMake option default value"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "CMake option description"
+                    }
+                }
+            }
+        }
+    }
+}

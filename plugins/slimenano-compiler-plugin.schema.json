@@ -1,0 +1,70 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "https://sopm.slimenano.com/plugins/slimenano-compiler-plugin.schema.json",
+    "title": "SlimeNano Compiler Plugin configuration",
+    "description": "SlimeNano Compiler Plugin configuration",
+    "type": "object",
+    "definitions": {},
+    "properties": {
+        "languageSettings": {
+            "type": "object",
+            "description": "Language settings",
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "standard": {
+                        "type": [
+                            "string",
+                            "number"
+                        ],
+                        "description": "Language standard"
+                    }
+                }
+            }
+        },
+        "includeDirectories": {
+            "type": ["string", "array"],
+            "description": "Include directories",
+            "items": {
+                "type": "object",
+                "required": [
+                    "path"
+                ],
+                "properties": {
+                    "path": {
+                        "type": "string",
+                        "description": "Include directory path"
+                    },
+                    "scope": {
+                        "$ref": "https://sopm.slimenano.com/project#/definitions/scope"
+                    }
+                }
+            }
+        },
+        "compileDefinitions": {
+            "type": "object",
+            "description": "Compile definitions",
+            "additionalProperties": {
+                "type": ["string", "object"],
+                "description": "Compile definition value",
+                "properties": {
+                    "value": {
+                        "type": "string",
+                        "description": "Compile definition value"
+                    },
+                    "scope": {
+                        "$ref": "https://sopm.slimenano.com/project#/definitions/scope"
+                    }
+                }
+            }
+        },
+        "compileFlags": {
+            "type": ["string", "array"],
+            "description": "Compile flags",
+            "items": {
+                "type": "string",
+                "description": "Compile flag"
+            }
+        }
+    }
+}

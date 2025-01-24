@@ -1,0 +1,55 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "https://sopm.slimenano.com/plugins/slimenano-install-plugin.schema.json",
+    "title": "SlimeNano Install Plugin configuration",
+    "description": "SlimeNano Install Plugin configuration",
+    "type": "object",
+    "definitions": {},
+    "properties": {
+        "runtime": {
+            "type": ["boolean", "string"],
+            "description": "Runtime directory",
+            "not": true
+        },
+        "library": {
+            "type": ["boolean", "string"],
+            "description": "Library directory",
+            "not": true
+        },
+        "archive": {
+            "type": ["boolean", "string"],
+            "description": "Archive directory",
+            "not": true
+        },
+        "include": {
+            "type": ["boolean", "string"],
+            "description": "Include directory, Executeable default false",
+            "not": true
+        },
+        "install": {
+            "type": "array",
+            "description": "Install directories",
+            "items": {
+                "type": "object",
+                "required": ["path", "files"],
+                "properties": {
+                    "path": {
+                        "type": "string",
+                        "description": "Install directory path"
+                    },
+                    "files": {
+                        "type": "array",
+                        "description": "Install files",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "flatten": {
+                        "type": "boolean",
+                        "description": "Flatten install files"
+                    }
+                }
+            }
+        }
+    }
+}
