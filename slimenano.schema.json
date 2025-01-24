@@ -7,7 +7,6 @@
     "required": [
         "artifact"
     ],
-    "additionalProperties": false,
     "definitions": {
         "scope": {
             "type": "string",
