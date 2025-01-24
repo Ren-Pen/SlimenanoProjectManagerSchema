@@ -1,0 +1,172 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "https://sopm.slimenano.com/project",
+    "title": "SlimeNano Open Source Project Manager",
+    "description": "SlimeNano Open Source Project Manager",
+    "type": "object",
+    "required": [
+        "artifact"
+    ],
+    "additionalProperties": false,
+    "definitions": {
+        "scope": {
+            "type": "string",
+            "description": "Dependency scope",
+            "enum": [
+                "public",
+                "private",
+                "interface"
+            ]
+        },
+        "artifactMeta": {
+            "type": "object",
+            "required": [
+                "group",
+                "artifact"
+            ],
+            "properties": {
+                "group": {
+                    "type": "string",
+                    "description": "Artifact group"
+                },
+                "artifact": {
+                    "type": "string",
+                    "description": "Artifact artifact"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Artifact version"
+                }
+            }
+        },
+        "dependency": {
+            "type": "object",
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/artifactMeta"
+                }
+            ],
+            "properties": {
+                "group": true,
+                "artifact": true,
+                "version": true,
+                "scope": {
+                    "$ref": "#/definitions/scope"
+                },
+                "relativePath": {
+                    "type": "string",
+                    "description": "Dependency relative path"
+                },
+                "excludes": {
+                    "type": "array",
+                    "description": "Dependency excludes",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "plugin": {
+            "type": "object",
+            "anyOf": [
+                {
+                    "$ref": "#/definitions/artifactMeta"
+                }
+            ],
+            "properties": {
+                "group": true,
+                "artifact": true,
+                "version": true,
+                "configuration": {
+                    "type": "object",
+                    "description": "Plugin configuration"
+                }
+            }
+        }
+    },
+    "anyOf": [
+        {
+            "$ref": "#/definitions/artifactMeta"
+        }
+    ],
+    "properties": {
+        "group": true,
+        "artifact": true,
+        "version": true,
+        "parent": {
+            "type": "object",
+            "description": "Parent project",
+            "$ref": "#/definitions/artifactMeta"
+        },
+        "description": {
+            "type": "string",
+            "description": "Project description"
+        },
+        "type": {
+            "type": "string",
+            "description": "Target type",
+            "enum": [
+                "executable",
+                "library",
+                "package",
+                "meta"
+            ]
+        },
+        "languages": {
+            "type": "array",
+            "description": "Target languages",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "C",
+                    "CXX"
+                ]
+            }
+        },
+        "properties": {
+            "type": "object",
+            "description": "Target properties"
+        },
+        "modules": {
+            "type": "array",
+            "description": "Target modules",
+            "items": {
+                "type": "string"
+            }
+        },
+        "dependencyManagement": {
+            "type": "array",
+            "description": "Dependency management",
+            "items": {
+                "$ref": "#/definitions/dependency"
+            }
+        },
+        "dependencies": {
+            "type": "array",
+            "description": "Dependencies",
+            "items": {
+                "$ref": "#/definitions/dependency"
+            }
+        },
+        "build": {
+            "type": "object",
+            "description": "Build configuration",
+            "properties": {
+                "pluginManagement": {
+                    "type": "array",
+                    "description": "Plugin management",
+                    "items": {
+                        "$ref": "#/definitions/plugin"
+                    }
+                },
+                "plugins": {
+                    "type": "array",
+                    "description": "Plugins",
+                    "items": {
+                        "$ref": "#/definitions/plugin"
+                    }
+                }
+            }
+        }
+    }
+}
